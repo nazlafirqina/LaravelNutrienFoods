@@ -1,0 +1,61 @@
+@font-face{
+  font-family:'FontMain';
+  src: url('../DMSans/DMSans-Regular.ttf')
+}
+
+body{
+  font-family: 'FontMain';
+  
+}
+.phone-bg{
+  background-color: #FFD0A9;
+}
+
+.bg-body-form{
+  background-color: #EADBA2;
+  border-radius: 20px;
+}
+
+.bg-card-body{
+  background-color: #f88d32;
+  border-radius: 20px;
+}
+#body-btn{
+  width: 100%;
+}
+
+
+
+@media only screen and (min-width: 1200px){
+  .phone{
+      display: none;
+  }
+
+  .desktop{
+      background: linear-gradient(
+          90deg,
+          #FFFFFF 0%,
+          #FFFFFF 50%,
+          #f88d32 50%,
+          #f88d32 100%
+      );
+  }
+
+  .img-penghias{
+      width: 500px;
+  }
+
+  .bg-body-form-desktop{
+      background-color: #EADBA2;
+  }
+
+  .cstm-mt{
+      margin-top: 10%;
+  }
+}
+
+@media only screen and (max-width: 1200px){
+  .desktop-laptop{
+      display: none;
+  }
+}
