@@ -2,62 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipeMakanan;
+use App\Models\TipeMakanan;
 use Illuminate\Http\Request;
 
 class TipeMakananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $data = TipeMakanan::all();
+        return view('admin.tipeMakanan.index', [
+            'listTipe' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.tipeMakanan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $val = $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        TipeMakanan::create([
+            'namaTipe' => $request->nama,
+            'description' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('admin.tipeMakanan.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\tipeMakanan  $tipeMakanan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(tipeMakanan $tipeMakanan)
+    public function edit($id)
     {
-        //
-    }
+        $data = TipeMakanan::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\tipeMakanan  $tipeMakanan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(tipeMakanan $tipeMakanan)
-    {
-        //
+        return view('admin.tipeMakanan.edit', [
+            'tipeMakanan' => $data,
+        ]);
     }
 
     /**
@@ -67,19 +52,24 @@ class TipeMakananController extends Controller
      * @param  \App\Models\tipeMakanan  $tipeMakanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tipeMakanan $tipeMakanan)
+    public function update(Request $request, $id)
     {
-        //
+        $val = $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        TipeMakanan::find($id)->update([
+            'namaTipe' => $request->nama,
+            'description' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('admin.tipeMakanan.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\tipeMakanan  $tipeMakanan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(tipeMakanan $tipeMakanan)
+    public function destroy($id)
     {
-        //
+        TipeMakanan::find($id)->delete();
+        return redirect()->route('admin.tipeMakanan.index');
     }
 }

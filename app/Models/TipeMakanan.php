@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tipeMakanan extends Model
+class TipeMakanan extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['namaTipe','description'];
 }
