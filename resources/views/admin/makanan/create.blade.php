@@ -43,6 +43,15 @@
                 </div>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="price">Tipe Makanan</label>
+            <input type="text" value="{{old('idTypeMakanan')}}" class="form-control" name="idTypeMakanan" id="idTypeMakanan">
+            @error('idTypeMakanan')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @endsection

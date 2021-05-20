@@ -14,7 +14,11 @@ class MakananController extends Controller
      */
     public function index()
     {
-        return view('admin.makanan.index');
+        $data = Makanan::all();
+        return view('admin.makanan.index', [
+            'listTipe' => $data,
+        ]);
+        
     }
 
     /**
@@ -35,7 +39,22 @@ class MakananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $val = $request->validate([
+            'namamakanan' => 'required',
+            'deskripsi' => 'required',
+            'calories' => 'required',
+            'price' => 'required',
+            'idTypeMakanan' => 'required'
+        ]);
+        Makanan::create([
+            'namaMakanan' => $request->namamakanan,
+            'description' => $request->deskripsi,
+            'calories' => $request->calories,
+            'price' => $request->price,
+            'idTypeMakanan' => $request->idTypeMakanan
+
+        ]);
+        return redirect()->route('admin.makanan.index');
     }
 
     /**
@@ -55,9 +74,13 @@ class MakananController extends Controller
      * @param  \App\Models\makanan  $makanan
      * @return \Illuminate\Http\Response
      */
-    public function edit(makanan $makanan)
+    public function edit($id)
     {
-        return view('admin.makanan.edit');
+        $data = Makanan::find($id);
+
+        return view('admin.makanan.edit', [
+            'Makanan' => $data,
+        ]);
         
     }
 
@@ -68,8 +91,23 @@ class MakananController extends Controller
      * @param  \App\Models\makanan  $makanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, makanan $makanan)
+    public function update(Request $request, $id)
     {
+        $val = $request->validate([
+            'namamakanan' => 'required',
+            'deskripsi' => 'required',
+            'calories' => 'required',
+            'price' => 'required',
+            'idTypeMakanan' => 'required'
+        ]);
+        Makanan::find($id)->update([
+            'namaMakanan' => $request->namamakanan,
+            'description' => $request->deskripsi,
+            'calories' => $request->calories,
+            'price' => $request->price,
+            'idTypeMakanan' => $request->idTypeMakanan
+        ]);
+
         return redirect()->route('admin.makanan.index');
     }
 
@@ -79,8 +117,9 @@ class MakananController extends Controller
      * @param  \App\Models\makanan  $makanan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(makanan $makanan)
+    public function destroy($id)
     {
+        Makanan::find($id)->delete();
         return redirect()->route('admin.makanan.index');
         
     }

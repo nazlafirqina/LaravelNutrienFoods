@@ -13,24 +13,29 @@
                 <th scope="col">#</th>
                 <th scope="col">Makanan</th>
                 <th scope="col">Deksripsi</th>
+                <th scope="col">Calories</th>
+                <th scope="col">Price</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($listTipe as $tipeMakanan)
+            @foreach ($listTipe as $makanan)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $tipeMakanan->namaTipe }}</td>
-                    <td>{{ $tipeMakanan->description }}</td>
+                    <td>{{ $makanan->namaMakanan }}</td>
+                    <td>{{ $makanan->description }}</td>
+                    <td>{{ $makanan->calories }}</td>
+                    <td>{{ $makanan->price }}</td>
+
                     <td class="row">
-                        <a href="{{ route('admin.tipeMakanan.edit', $tipeMakanan->id) }}" class="btn btn-primary mx-2">Edit</a>
-                        <form action="{{ route('admin.tipeMakanan.delete', $tipeMakanan->id) }}" method="POST">
+                        <a href="{{ route('admin.makanan.edit', $makanan->id) }}" class="btn btn-primary mx-2">Edit</a>
+                        <form action="{{ route('admin.makanan.delete', $makanan->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </form>
                     </td>
                 </tr>
-            @endforeach --}}
+            @endforeach
         </tbody>
     </table>
 @endsection

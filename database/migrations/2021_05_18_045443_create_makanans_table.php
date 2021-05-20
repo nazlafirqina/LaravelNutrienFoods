@@ -14,7 +14,7 @@ class CreateMakanansTable extends Migration
     public function up()
     {
         Schema::create('makanans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('namaMakanan');
             $table->string('description');
             $table->decimal('calories');
