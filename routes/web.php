@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\TipeMakananController;
+use App\Http\Controllers\MakananController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,4 +51,13 @@ Route::prefix('admin')->group(function(){
         Route::post('/update/{id}',[TipeMakananController::class, 'update'])->name('admin.tipeMakanan.update');
         Route::post('/delete/{id}',[TipeMakananController::class, 'destroy'])->name('admin.tipeMakanan.delete');
     });
+    Route::prefix('makanan')->group(function(){
+        Route::get('/',[MakananController::class, 'index'])->name('admin.makanan.index');
+        Route::get('/create',[MakananController::class, 'create'])->name('admin.makanan.create');
+        Route::post('/store',[MakananController::class, 'store'])->name('admin.makanan.store');
+        Route::get('/edit/{id}',[MakananController::class, 'edit'])->name('admin.makanan.edit');
+        Route::post('/update/{id}',[MakananController::class, 'update'])->name('admin.makanan.update');
+        Route::post('/delete/{id}',[MakananController::class, 'destroy'])->name('admin.makanan.delete');
+    });
 });
+

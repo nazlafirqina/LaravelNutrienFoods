@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\makanan;
+use App\Models\Makanan;
 use Illuminate\Http\Request;
 
 class MakananController extends Controller
@@ -14,7 +14,7 @@ class MakananController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.makanan.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MakananController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.makanan.create');
     }
 
     /**
@@ -57,7 +57,8 @@ class MakananController extends Controller
      */
     public function edit(makanan $makanan)
     {
-        //
+        return view('admin.makanan.edit');
+        
     }
 
     /**
@@ -69,7 +70,7 @@ class MakananController extends Controller
      */
     public function update(Request $request, makanan $makanan)
     {
-        //
+        return redirect()->route('admin.makanan.index');
     }
 
     /**
@@ -80,6 +81,7 @@ class MakananController extends Controller
      */
     public function destroy(makanan $makanan)
     {
-        //
+        return redirect()->route('admin.makanan.index');
+        
     }
 }
