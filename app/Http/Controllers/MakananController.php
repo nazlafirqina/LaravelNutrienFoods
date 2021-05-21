@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Makanan;
+use App\Models\TipeMakanan;
 use Illuminate\Http\Request;
 
 class MakananController extends Controller
@@ -18,7 +19,6 @@ class MakananController extends Controller
         return view('admin.makanan.index', [
             'listTipe' => $data,
         ]);
-        
     }
 
     /**
@@ -28,7 +28,10 @@ class MakananController extends Controller
      */
     public function create()
     {
-        return view('admin.makanan.create');
+        $data = TipeMakanan::all();
+        return view('admin.makanan.create', [
+            'listTipe' => $data,
+        ]);
     }
 
     /**
@@ -44,15 +47,20 @@ class MakananController extends Controller
             'deskripsi' => 'required',
             'calories' => 'required',
             'price' => 'required',
-            'idTypeMakanan' => 'required'
+            'idTypeMakanan' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg',
         ]);
+
+        $nameimg = time() . "." . $request->image->extension();
+        $request->image->storeAs('public', $nameimg);
+
         Makanan::create([
             'namaMakanan' => $request->namamakanan,
             'description' => $request->deskripsi,
             'calories' => $request->calories,
             'price' => $request->price,
-            'idTypeMakanan' => $request->idTypeMakanan
-
+            'idTypeMakanan' => $request->idTypeMakanan,
+            'image' => $nameimg,
         ]);
         return redirect()->route('admin.makanan.index');
     }
@@ -81,7 +89,6 @@ class MakananController extends Controller
         return view('admin.makanan.edit', [
             'Makanan' => $data,
         ]);
-        
     }
 
     /**
@@ -121,6 +128,5 @@ class MakananController extends Controller
     {
         Makanan::find($id)->delete();
         return redirect()->route('admin.makanan.index');
-        
     }
 }

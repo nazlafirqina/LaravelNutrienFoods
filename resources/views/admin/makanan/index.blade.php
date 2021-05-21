@@ -12,6 +12,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Makanan</th>
+                <th scope="col">pict</th>
                 <th scope="col">Deksripsi</th>
                 <th scope="col">Calories</th>
                 <th scope="col">Price</th>
@@ -23,6 +24,7 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $makanan->namaMakanan }}</td>
+                    <td><img src="{{url('storage/' . $makanan->image)}}" style="width: 100px" alt=""></td>
                     <td>{{ $makanan->description }}</td>
                     <td>{{ $makanan->calories }}</td>
                     <td>{{ $makanan->price }}</td>
