@@ -85,9 +85,11 @@ class MakananController extends Controller
     public function edit($id)
     {
         $data = Makanan::find($id);
+        $listTipe = TipeMakanan::all();
 
         return view('admin.makanan.edit', [
-            'Makanan' => $data,
+            'makanan' => $data,
+            'listTipe' => $listTipe,
         ]);
     }
 
@@ -105,14 +107,25 @@ class MakananController extends Controller
             'deskripsi' => 'required',
             'calories' => 'required',
             'price' => 'required',
-            'idTypeMakanan' => 'required'
+            'idTypeMakanan' => 'required',
         ]);
-        Makanan::find($id)->update([
+
+        $m = Makanan::find($id);
+
+        if ($request->image) {
+            $nameimg = time() . "." . $request->image->extension();
+            $request->image->storeAs('public', $nameimg);
+            $m->update([
+                'image' => $nameimg,
+            ]);
+        }
+
+        $m->update([
             'namaMakanan' => $request->namamakanan,
             'description' => $request->deskripsi,
             'calories' => $request->calories,
             'price' => $request->price,
-            'idTypeMakanan' => $request->idTypeMakanan
+            'idTypeMakanan' => $request->idTypeMakanan,
         ]);
 
         return redirect()->route('admin.makanan.index');
