@@ -59,18 +59,17 @@
                         <a class="dropdown-item" href="{{ route('admin.makanan.create') }}">Tambah</a>
                     </div>
                 </li>
-                {{-- <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li> --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jenis Tubuh
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('admin.jenisTubuh.index') }}">List</a>
+                        <a class="dropdown-item" href="{{ route('admin.jenisTubuh.create') }}">Tambah</a>
+                    </div>
+                </li>
+              
             </ul>
         </div>
     </nav>

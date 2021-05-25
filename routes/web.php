@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\TipeMakananController;
 use App\Http\Controllers\MakananController;
+use App\Http\Controllers\JenisTubuhController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +60,14 @@ Route::prefix('admin')->group(function(){
         Route::get('/edit/{id}',[MakananController::class, 'edit'])->name('admin.makanan.edit');
         Route::post('/update/{id}',[MakananController::class, 'update'])->name('admin.makanan.update');
         Route::post('/delete/{id}',[MakananController::class, 'destroy'])->name('admin.makanan.delete');
+    });
+    Route::prefix('jenisTubuh')->group(function(){
+        Route::get('/',[JenisTubuhController::class, 'index'])->name('admin.jenisTubuh.index');
+        Route::get('/create',[JenisTubuhController::class, 'create'])->name('admin.jenisTubuh.create');
+        Route::post('/store',[JenisTubuhController::class, 'store'])->name('admin.jenisTubuh.store');
+        Route::get('/edit/{id}',[JenisTubuhController::class, 'edit'])->name('admin.jenisTubuh.edit');
+        Route::post('/update/{id}',[JenisTubuhController::class, 'update'])->name('admin.jenisTubuh.update');
+        Route::post('/delete/{id}',[JenisTubuhController::class, 'destroy'])->name('admin.jenisTubuh.delete');
     });
 });
 

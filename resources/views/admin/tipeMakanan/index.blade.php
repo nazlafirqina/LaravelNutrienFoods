@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($listTipe as $tipeMakanan)
+            {{-- @foreach ($listTipe as $tipeMakanan)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $tipeMakanan->namaTipe }}</td>
@@ -30,7 +30,7 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @endforeach --}}
         </tbody>
     </table>
 @endsection
