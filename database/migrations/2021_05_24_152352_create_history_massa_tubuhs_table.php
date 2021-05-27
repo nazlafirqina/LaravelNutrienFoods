@@ -16,10 +16,12 @@ class CreateHistoryMassaTubuhsTable extends Migration
         Schema::create('history_massa_tubuhs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idUser');
-            $table->unsignedBigInteger('idJenisTubuh');
             $table->decimal('height');
             $table->decimal('weight');
+            $table->decimal('hasil');
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

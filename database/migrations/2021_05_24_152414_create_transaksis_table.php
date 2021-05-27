@@ -15,12 +15,16 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('iDUser');
-            $table->unsignedBigInteger('iDcart');
-            $table->unsignedBigInteger('iDPembayaran');
+            $table->unsignedBigInteger('idUser');
             $table->decimal("totalBarang");
             $table->decimal("totalHarga");
+            $table->boolean('cart')->default(false);
+            $table->boolean('bayar')->default(false);
+            $table->boolean('kirim')->default(false);
             $table->timestamps();
+
+            $table->foreign('idUser')->references('id')->on('users');
+
         });
     }
 
