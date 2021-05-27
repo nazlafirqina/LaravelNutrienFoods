@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TipeMakananController;
 use App\Http\Controllers\MakananController;
 use App\Http\Controllers\JenisTubuhController;
@@ -39,9 +40,7 @@ Route::get('login', function () {
 Route::get('register', function () {
     return view('register');
 })->name('register');
-Route::get('menu', function () {
-    return view('menu');
-})->name('menu');
+Route::get('menu',[DashboardController::class, 'menu'])->name('menu');
 
 
 Route::prefix('admin')->group(function(){
