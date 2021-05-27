@@ -35,7 +35,17 @@ class HistoryMassaTubuhController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $val = $request->validate([
+            'weight' => 'required',
+            'height' => 'required',
+        ]);
+
+        HistoryMassaTubuh::create([
+            'weight' => $request->weight,
+            'height' => $request->height,
+        ]);
+
+        return redirect()->route('admin.tipeMakanan.index');
     }
 
     /**
