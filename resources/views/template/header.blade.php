@@ -20,21 +20,28 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item hvr-underline-from-center">
-                        <a class="nav-link active fw-bold" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active fw-bold" aria-current="page" href="{{route('index')}}">Home</a>
                     </li>
                     <li class="nav-item hvr-underline-from-center">
-                        <a class="nav-link fw-bold" href="{{route('menu')}}">Menu</a>
+                        <a class="nav-link fw-bold" href="{{route('user.menu')}}">Menu</a>
                     </li>
                     <li class="nav-item hvr-underline-from-center">
                         <a class="nav-link fw-bold" href="#">Contact</a>
                     </li>
                     <li class="nav-item hvr-underline-from-center">
-                        <a class="nav-link fw-bold" href="{{route('about')}}">About Us</a>
+                        <a class="nav-link fw-bold" href="{{route('user.about')}}">About Us</a>
                     </li>
                 </ul>
+                @if (Auth::check())
                 <div class="d-flex">
-                    <a class="btn btn-info me-2 signUp" href="{{route('register')}}">Sign Up</a>
+                    <a class="btn btn-info me-2 signUp" href="{{route('user.auth.logout')}}">Logout</a>
                 </div>
+                @else 
+                <div class="d-flex">
+                    <a class="btn btn-info me-2 signUp" href="{{route('user.auth.register')}}">Sign Up</a>
+                </div>
+                @endif
+               
             </div>
         </div>
     </nav>

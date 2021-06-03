@@ -16,7 +16,7 @@
     <div class="container phone">
         <div class="row justify-content-center">
             <div class="col-sm-8 text-center mt-5">
-                <h1>Welcome Back To NutrienFoods!</h1>
+                <h1>Dear Admin Welcome Back To NutrienFoods!</h1>
                 <h2>Please Login</h2>
             </div>
         </div>
@@ -25,18 +25,19 @@
                 <div class="card-body">
                     <h4 class="card-title text-center">Register Now</h4>
                     <form>
+                        @csrf
                         <div class="form-group">
-                            <label for="Username">Username</label>
-                            <input type="text" class="form-control bg-lgn-form" id="Username" placeholder="Username">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control bg-lgn-form" id="email" placeholder="email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="Password">Password</label>
-                            <input type="password" class="form-control bg-lgn-form" id="Password" placeholder="Please Enter 8 Characters Long Password">
+                            <input type="password" class="form-control bg-lgn-form" id="Password" placeholder="Please Enter 8 Characters Long Password" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary self-align-center text-white mt-2" id="lgn-btn">
                             <h5>LOGIN</h5>
                         </button>
-                        <small id="login-text" class="form-text">Didn't Have An Account? <a class="rgstr-link text-blue" href="{{route('login')}}">Register</a></small>
+                        <small id="login-text" class="form-text">Didn't Have An Account? <a class="rgstr-link text-blue" href="{{route()}}">Register</a></small>
                     </form>
                 </div>
             </div>
@@ -45,7 +46,7 @@
     <div class="container desktop-laptop">
         <div class="row justify-content-center">
             <div class="col-sm-8 text-center mt-5">
-                <h1 class="font-weight-bold">Welcome Back To NutrienFoods!</h1>
+                <h1 class="font-weight-bold">Dear Admin Welcome Back To NutrienFoods!</h1>
                 <h2 class="font-weight-bold">Please Login</h2>
             </div>
         </div>
@@ -55,13 +56,14 @@
             </div>
             <div class="col-lg-5 offset-lg-2 cstm-mt">
                 <form>
+                    @csrf
                     <div class="form-group">
-                        <label for="Username" class="mb-0"><h4>Username</h4></label>
-                        <input type="text" class="form-control bg-lgn-form-desktop" id="Username" placeholder="Username">
+                        <label for="email" class="mb-0"><h4>Email</h4></label>
+                        <input type="text" class="form-control bg-lgn-form-desktop" id="email" placeholder="Email" name="email">
                     </div>
                     <div class="form-group">
                         <label for="Password" class="mb-0"><h4>Password</h4></label>
-                        <input type="password" class="form-control bg-lgn-form-desktop" id="Password" placeholder="Password">
+                        <input type="password" class="form-control bg-lgn-form-desktop" id="Password" placeholder="Password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary self-align-center text-white mt-2" id="lgn-btn">
                         <h4>LOGIN</h4>

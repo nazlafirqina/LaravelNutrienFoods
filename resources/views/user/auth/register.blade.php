@@ -24,32 +24,29 @@
             <div class="card shadow-lg mt-4 bg-card-rgstr">
                 <div class="card-body">
                     <h4 class="card-title text-center">Register Now</h4>
-                    <form>
+                    <form action="{{route('user.auth.register')}}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-5 justify-content-start">
                                 <div class="form-group">
                                     <label for="FirstName">First Name</label>
-                                    <input type="text" class="form-control bg-rgstr-form" id="FirstName" placeholder="John">
+                                    <input type="text" class="form-control bg-rgstr-form" id="FirstName" placeholder="John" name="firstname">
                                 </div>
                             </div>
                             <div class="col-sm-5 offset-sm-2">
                                 <div class="form-group">
                                     <label for="LastName">Last Name</label>
-                                    <input type="text" class="form-control bg-rgstr-form" id="LastName" placeholder="Doe">
+                                    <input type="text" class="form-control bg-rgstr-form" id="LastName" placeholder="Doe" name="lastname">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Email">Email</label>
-                            <input type="email" class="form-control bg-rgstr-form" id="Email" placeholder="example@mail.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="Username">Username</label>
-                            <input type="text" class="form-control bg-rgstr-form" id="Username" placeholder="Username">
+                            <input type="email" class="form-control bg-rgstr-form" id="Email" placeholder="example@mail.com" name="email">
                         </div>
                         <div class="form-group">
                             <label for="Password">Password</label>
-                            <input type="password" class="form-control bg-rgstr-form" id="Password" placeholder="Please Enter 8 Characters Long Password">
+                            <input type="password" class="form-control bg-rgstr-form" id="Password" placeholder="Please Enter 8 Characters Long Password" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary self-align-center text-white mt-2" id="rgstr-btn">
                             <h5>REGISTER</h5>
@@ -72,32 +69,29 @@
                 <img src=./img/PenghiasRegister.png class="img-penghias" alt="food-bowl">
             </div>
             <div class="col-lg-5 offset-lg-2 mt-5">
-                <form>
+                <form action="{{route('user.auth.register')}}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-5 justify-content-start">
                             <div class="form-group">
                                 <label for="FirstName" class="mb-0"><h4>First Name</h4></label>
-                                <input type="text" class="form-control bg-rgstr-form-desktop" id="FirstName" placeholder="John">
+                                <input type="text" class="form-control bg-rgstr-form-desktop" id="FirstName" placeholder="John" name="firstname">
                             </div>
                         </div>  
                         <div class="col-lg-5 offset-lg-2">
                             <div class="form-group">
                                 <label for="LastName" class="mb-0"><h4>Last Name</h4></label>
-                                <input type="text" class="form-control bg-rgstr-form-desktop" id="LastName" placeholder="Doe">
+                                <input type="text" class="form-control bg-rgstr-form-desktop" id="LastName" placeholder="Doe" name="lastname">
                             </div>
                         </div>
                     </div> 
                     <div class="form-group">
                         <label for="Email" class="mb-0"><h4>Email</h4></label>
-                        <input type="email" class="form-control bg-rgstr-form-desktop" id="Email" placeholder="example@mail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="Username" class="mb-0"><h4>Username</h4></label>
-                        <input type="text" class="form-control bg-rgstr-form-desktop" id="Username" placeholder="Username">
+                        <input type="email" class="form-control bg-rgstr-form-desktop" id="Email" placeholder="example@mail.com" name="email">
                     </div>
                     <div class="form-group">
                         <label for="Password" class="mb-0"><h4>Password</h4></label>
-                        <input type="password" class="form-control bg-rgstr-form-desktop" id="Password" placeholder="Please Enter 8 Characters Long Password">
+                        <input type="password" class="form-control bg-rgstr-form-desktop" id="Password" placeholder="Please Enter 8 Characters Long Password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary self-align-center text-white mt-2" id="rgstr-btn">
                         <h4>REGISTER</h4>
