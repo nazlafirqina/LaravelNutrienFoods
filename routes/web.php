@@ -5,9 +5,8 @@ use App\Http\Controllers\TipeMakananController;
 use App\Http\Controllers\MakananController;
 use App\Http\Controllers\JenisTubuhController;
 use App\Http\Controllers\AuthController;
-
-
-
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +34,11 @@ Route::prefix('auth')->middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'dologin'])->name('user.auth.login');
 });
-Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('user.auth.logout');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 
 
-Route::prefix('user')->group(function () {
+Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(function () {
     Route::get('menu', [DashboardController::class, 'menu'])->name('user.menu');
 
     Route::get('about', function () {
@@ -47,7 +46,11 @@ Route::prefix('user')->group(function () {
     })->name('user.about');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
+    Route::get('/', function () {
+        $a = "<h1> Hai Admin </h1>";
+        echo $a;
+    })->name('admin.home');
     Route::prefix('tipemakanan')->group(function () {
         Route::get('/', [TipeMakananController::class, 'index'])->name('admin.tipeMakanan.index');
         Route::get('/create', [TipeMakananController::class, 'create'])->name('admin.tipeMakanan.create');

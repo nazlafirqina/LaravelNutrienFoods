@@ -34,7 +34,7 @@
                 </ul>
                 @if (Auth::check())
                 <div class="d-flex">
-                    <a class="btn btn-info me-2 signUp" href="{{route('user.auth.logout')}}">Logout</a>
+                    <a class="btn btn-info me-2 signUp" href="{{route('logout')}}">Logout</a>
                 </div>
                 @else 
                 <div class="d-flex">

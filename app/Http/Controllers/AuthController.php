@@ -10,32 +10,39 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     //
-   
-    public function register(){
+
+    public function register()
+    {
         return view('user.auth.register');
     }
-    public function doregister( Request $request){
+    public function doregister(Request $request)
+    {
         User::create([
-            'name'=>$request->firstname . $request->lastname,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'roles'=>'user'
+            'name' => $request->firstname . $request->lastname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'roles' => 'user'
         ]);
         return redirect()->route('login');
-
     }
-    public function login(){
+    public function login()
+    {
         return view('user.auth.login');
     }
 
-    public function dologin(Request $request){
+    public function dologin(Request $request)
+    {
         if (Auth::attempt($request->only(['email', 'password']))) {
+            if (Auth::user()->roles == 'admin') {
+                return redirect()->route('admin.home');
+            }
             return redirect()->route('index');
         }
         return redirect()->back()->with('email', 'Email atau password salah');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }
