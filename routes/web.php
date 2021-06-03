@@ -48,8 +48,7 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
 
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
     Route::get('/', function () {
-        $a = "<h1> Hai Admin </h1>";
-        echo $a;
+        return view('admin.dashboard');
     })->name('admin.home');
     Route::prefix('tipemakanan')->group(function () {
         Route::get('/', [TipeMakananController::class, 'index'])->name('admin.tipeMakanan.index');

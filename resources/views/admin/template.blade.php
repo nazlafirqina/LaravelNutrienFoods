@@ -49,17 +49,7 @@
                         <a class="dropdown-item" href="{{ route('admin.makanan.create') }}">Tambah</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pengiriman
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('admin.makanan.index') }}">List</a>
-                        <a class="dropdown-item" href="{{ route('admin.makanan.create') }}">Tambah</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Jenis Tubuh
@@ -68,7 +58,7 @@
                         <a class="dropdown-item" href="{{ route('admin.jenisTubuh.index') }}">List</a>
                         <a class="dropdown-item" href="{{ route('admin.jenisTubuh.create') }}">Tambah</a>
                     </div>
-                </li>
+                </li> --}}
               
             </ul>
         </div>
