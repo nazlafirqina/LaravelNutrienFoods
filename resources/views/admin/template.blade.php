@@ -17,6 +17,7 @@
         * {
             font-family: open-sans;
         }
+
     </style>
 </head>
 
@@ -49,8 +50,8 @@
                         <a class="dropdown-item" href="{{ route('admin.makanan.create') }}">Tambah</a>
                     </div>
                 </li>
-                <button>Logout</button>
-              
+                <a href="{{ route('logout') }}" class="btn btn-danger">LOGOUT</a>
+
             </ul>
         </div>
     </nav>

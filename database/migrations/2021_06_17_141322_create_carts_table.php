@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('idUser');
             $table->unsignedBigInteger('idMakanan');
-            $table->decimal('jumlahBarang');
+            $table->integer('jumlahBarang');
             $table->foreign('idUser')->references('id')->on('users');
             $table->foreign('idMakanan')->references('id')->on('makanans');
 
