@@ -42,7 +42,7 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::get('menu', [DashboardController::class, 'menu'])->name('user.menu');
 
     Route::get('about', function () {
-        return view('about');
+        return view('user.about');
     })->name('user.about');
 });
 
