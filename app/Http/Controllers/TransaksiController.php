@@ -2,84 +2,79 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\DetailTransaksi;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function viewcart()
     {
-        //
+        $data = Cart::with('makanan')->where('idUser', Auth::user()->id)->get();
+        return view('user.cart', [
+            'carts' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function addtocart(Request $request)
     {
-        //
+        $data = Cart::where('idUser', Auth::user()->id)->where('idMakanan', $request->id_makanan)->first();
+        if ($data) {
+            $data->jumlahBarang = $data->jumlahBarang + 1;
+            $data->save();
+            return redirect()->route('user.cart.list')->with('success', 'menambah jumlah barang');
+        } else {
+            Cart::create([
+                'idUser' => Auth::user()->id,
+                'idMakanan' => $request->id_makanan,
+                'jumlahBarang' => 1
+            ]);
+            return redirect()->route('user.cart.list')->with('success', 'menambah item baru ke keranjang');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function docheckout(Request $request)
     {
-        //
+        $data = Cart::with('makanan')->where('idUser', Auth::user()->id)->get();
+        $t = Transaksi::create([
+            'idUser' => Auth::user()->id,
+            'totalBarang' => 0,
+            'totalHarga' => 0,
+        ]);
+        $tb = 0;
+        $th = 0;
+        foreach ($data as $d) {
+            DetailTransaksi::create([
+                'idTransaksi' => $t->id,
+                'idMakanan' => $d->makanan->id,
+                'namaBarang' => $d->makanan->namaMakanan,
+                'jumlahPembelian' => $d->jumlahBarang,
+                'harga' => $d->makanan->price,
+            ]);
+            $th = $th + ($d->jumlahBarang * $d->makanan->price);
+            $tb = $tb + $d->jumlahBarang;
+            $d->delete();
+        }
+
+        $t->totalBarang = $tb;
+        $t->totalHarga = $th;
+        $t->save();
+
+        return redirect()->route('user.transaction.list')->with('success', 'membuat transaksi');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaksi $transaksi)
+    public function listt()
     {
-        //
+        $data = Auth::user()->transaction;
+        return view('user.transaksi', [
+            'trans' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaksi $transaksi)
+    public function detailst($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Transaksi $transaksi)
-    {
-        //
+        return view('user.detail_transaksi');
     }
 }

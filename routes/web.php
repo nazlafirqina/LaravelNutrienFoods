@@ -5,6 +5,7 @@ use App\Http\Controllers\TipeMakananController;
 use App\Http\Controllers\MakananController;
 use App\Http\Controllers\JenisTubuhController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,15 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::get('about', function () {
         return view('user.about');
     })->name('user.about');
+
+    Route::get('cart',[TransaksiController::class, 'viewcart'])->name('user.cart.list');
+    Route::post('cart',[TransaksiController::class, 'addtocart'])->name('user.cart.add');
+    // TODO
+    // ROUTE TAMBAH, KURANG, HAPUS item
+
+    Route::post('checkout', [TransaksiController::class, 'docheckout'])->name('user.transaction.do');
+    Route::get('trns', [TransaksiController::class, 'listt'])->name('user.transaction.list');
+    Route::get('trns/{id}', [TransaksiController::class, 'detailst'])->name('user.transaction.detail');
 });
 
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
