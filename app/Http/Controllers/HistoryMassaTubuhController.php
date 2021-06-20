@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\HistoryMassaTubuh;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HistoryMassaTubuhController extends Controller
 {
@@ -24,28 +26,24 @@ class HistoryMassaTubuhController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.formweight');
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $val = $request->validate([
-            'weight' => 'required',
             'height' => 'required',
+            'weight' => 'required'
         ]);
 
         HistoryMassaTubuh::create([
-            'weight' => $request->weight,
+            'idUser' => Auth::user()->id,
             'height' => $request->height,
+            'weight' => $request->weight
         ]);
 
-        return redirect()->route('admin.tipeMakanan.index');
+        return redirect()->route('user.menu');
     }
 
     /**

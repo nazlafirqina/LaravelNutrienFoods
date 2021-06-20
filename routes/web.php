@@ -6,6 +6,7 @@ use App\Http\Controllers\MakananController;
 use App\Http\Controllers\JenisTubuhController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\HistoryMassaTubuhController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,7 @@ Route::get('/', function () {
     return view('user.index');
 })->name('index');
 
-Route::get('formweight', function () {
-    return view('formweight');
-})->name('formweight');
+
 
 Route::prefix('auth')->middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('user.auth.register');
@@ -41,10 +40,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->na
 
 Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(function () {
     Route::get('menu', [DashboardController::class, 'menu'])->name('user.menu');
-
     Route::get('about', function () {
         return view('user.about');
     })->name('user.about');
+    Route::get('profile', function () {
+        return view('user.profile');
+    })->name('user.profile');
+
 
     Route::get('cart',[TransaksiController::class, 'viewcart'])->name('user.cart.list');
     Route::post('cart',[TransaksiController::class, 'addtocart'])->name('user.cart.add');
@@ -54,6 +56,9 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::post('checkout', [TransaksiController::class, 'docheckout'])->name('user.transaction.do');
     Route::get('trns', [TransaksiController::class, 'listt'])->name('user.transaction.list');
     Route::get('trns/{id}', [TransaksiController::class, 'detailst'])->name('user.transaction.detail');
+
+    Route::get('formweight', [HistoryMassaTubuhController::class, 'create'])->name('user.formweight.create');
+    Route::post('formweight', [HistoryMassaTubuhController::class, 'store'])->name('user.formweight.store');
 });
 
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {

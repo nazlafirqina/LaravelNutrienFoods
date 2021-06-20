@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class HistoryMassaTubuh extends Model
 {
     use HasFactory;
-    protected $fillable = ['idUser','weight','height', 'hasil'];
+    protected $fillable = ['idUser','height','weight','hasil'];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser', 'id');
+    }
 }
