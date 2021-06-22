@@ -16,7 +16,11 @@ class HistoryMassaTubuhController extends Controller
      */
     public function index()
     {
-        //
+        $data = HistoryMassaTubuh::with('user')->where('idUser', Auth::user()->id)->get();
+        return view('user.profile', [
+            'list' => $data,
+        ]);
+
     }
 
     /**
@@ -34,47 +38,35 @@ class HistoryMassaTubuhController extends Controller
     {
         $val = $request->validate([
             'height' => 'required',
-            'weight' => 'required'
+            'weight' => 'required',
         ]);
+        $tinggi = $request->height;
+        $berat =$request->weight;
+        $tgg = $tinggi/100;
+        $bmi = $berat/($tgg*$tgg);
+        
 
         HistoryMassaTubuh::create([
             'idUser' => Auth::user()->id,
             'height' => $request->height,
-            'weight' => $request->weight
+            'weight' => $request->weight,
+            'hasil' => $bmi
         ]);
 
         return redirect()->route('user.menu');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\HistoryMassaTubuh  $historyMassaTubuh
-     * @return \Illuminate\Http\Response
-     */
     public function show(HistoryMassaTubuh $historyMassaTubuh)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\HistoryMassaTubuh  $historyMassaTubuh
-     * @return \Illuminate\Http\Response
-     */
     public function edit(HistoryMassaTubuh $historyMassaTubuh)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HistoryMassaTubuh  $historyMassaTubuh
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, HistoryMassaTubuh $historyMassaTubuh)
     {
         //

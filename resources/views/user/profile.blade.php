@@ -1,16 +1,19 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Profile</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <h3>Nama</h3>
     <h3>Jenis Tubuh</h3>
     <div class="container">
@@ -26,18 +29,41 @@
             </ul>
         </div>
         <div>
-            <ul>
-                <li>Nama</li>
-                <li>Jenis Tubuh</li>
-            </ul>
+            @foreach ($list as $massatubuh)
+                <ul>
+                    <li>Nama User : {{$massatubuh->user->name}}</li>
+                    <li>Berat Badan : {{ $massatubuh->weight }}</li>
+                    <li>Tinggi Badan : {{ $massatubuh->height }}</li>
+                    <li>Hasil Perhitungan : {{ $massatubuh->hasil }}</li>
+                    <li>Kategori Tubuh :
+                        @if ($massatubuh->hasil < 18.5)
+                            Berat Badan Kurang
+                        @elseif ($massatubuh->hasil >= 18.5 && $massatubuh->hasil <= 22.9)
+                            Berat Badan Normal
+                        @elseif ($massatubuh->hasil > 22.9 && $massatubuh->hasil <= 29.9)
+                            Beresiko Obesitas
+                        @else
+                            Obesitas
+                        @endif
+                    </li>
+                </ul>
+            @endforeach
+
             <div class="d-flex">
                 <a class="btn btn-info me-2" href="{{ route('logout') }}">Logout</a>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
 </html>

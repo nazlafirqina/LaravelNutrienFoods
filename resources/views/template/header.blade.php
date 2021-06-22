@@ -35,12 +35,6 @@
                     <li class="nav-item hvr-underline-from-center">
                         <a class="nav-link fw-bold" href="{{ route('user.about') }}">About Us</a>
                     </li>
-                    <li class="nav-item hvr-underline-from-center">
-                        <a class="nav-link fw-bold" href="{{ route('user.cart.list') }}">Cart</a>
-                    </li>
-                    <li class="nav-item hvr-underline-from-center">
-                        <a class="nav-link fw-bold" href="{{ route('user.transaction.list') }}">MY TRANS</a>
-                    </li>
                     
                 </ul>
                 @if (Auth::check())

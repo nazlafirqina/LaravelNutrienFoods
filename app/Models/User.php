@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaksi::class, 'idUser', 'id');
     }
+    public function massatubuh()
+    {
+        return $this->hasMany(HistoryMassaTubuh::class, 'idUser', 'id');
+    }
 }

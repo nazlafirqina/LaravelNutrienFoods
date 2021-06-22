@@ -43,9 +43,7 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::get('about', function () {
         return view('user.about');
     })->name('user.about');
-    Route::get('profile', function () {
-        return view('user.profile');
-    })->name('user.profile');
+    Route::get('profile', [HistoryMassaTubuhController::class, 'index'])->name('user.profile');
 
 
     Route::get('cart',[TransaksiController::class, 'viewcart'])->name('user.cart.list');

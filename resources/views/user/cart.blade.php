@@ -62,7 +62,7 @@
 
             @if (sizeof($carts) == 0)
                 <div class="alert-danger">
-                    KOSONG LUR
+                    Keranjang Kosong
                 </div>
             @endif
             @foreach ($carts as $item)
