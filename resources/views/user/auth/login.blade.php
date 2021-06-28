@@ -55,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 mt-5">
-                <img src=./img/PenghiasRegister.png class="img-penghias" alt="food-bowl">
+                <img src="{{url('/img/PenghiasRegister.png')}}" class="img-penghias" alt="food-bowl">
             </div>
             <div class="col-lg-5 offset-lg-2 cstm-mt">
                 <form action="{{route('user.auth.login')}}" method="POST">

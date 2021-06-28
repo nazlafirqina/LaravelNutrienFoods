@@ -16,7 +16,7 @@
                 so you can eat well without worrying the calories and your weight.
                 The food here is being formulated by certified nutrionist
                 and having a laboratory test.</p>
-            <a class="explore btn" href='./menu.php'>Explore Now</a>
+            <a class="explore btn" href="{{ route('user.menu') }}">Explore Now</a>
         </div>
     </div>
 </div>

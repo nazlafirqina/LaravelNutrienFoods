@@ -3,6 +3,8 @@
 body{
     font-family: 'DM Sans', sans-serif;
     background-color: #fcfcfc;
+    margin: 0;
+    height: 100%;
 }
 .nav-link{
     color: #14416b;

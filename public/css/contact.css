@@ -2,6 +2,8 @@
 body{
     font-family: 'DM Sans', sans-serif;
     background-color: #fcfcfc;
+    margin: 0;
+    height: 100%;
 }
 .nav-link{
     color: #14416b;
@@ -19,32 +21,6 @@ body{
     padding: 8px 16px;
     border-radius: 12px;
     font-size: 20px;
-}
-
-.card-title{
-    font-size: 24px;
-
-}
-.buttonBuy {
-    background-color: #14416b;
-    border-radius: 10px;
-    padding: 8px 16px;
-    border: none;
-    box-shadow: 8px 8px 18px 4px rgba(111, 107, 107, 0.25);
-
-    /* font-size: 20px; */
-}
-.price{
-    color: #14416b;
-    
-}
-.card-text{
-    font-size: 18px;
-}
-.card{
-    border: none;
-    box-shadow: 8px 8px 18px 4px rgba(111, 107, 107, 0.25);
-    border-radius: 30px;
 }
 
 .hvr-underline-from-center{

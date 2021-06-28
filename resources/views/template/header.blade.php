@@ -30,7 +30,7 @@
                         <a class="nav-link fw-bold" href="{{ route('user.menu') }}">Menu</a>
                     </li>
                     <li class="nav-item hvr-underline-from-center">
-                        <a class="nav-link fw-bold" href="#">Contact</a>
+                        <a class="nav-link fw-bold" href="{{ route('user.contact') }}">Contact</a>
                     </li>
                     <li class="nav-item hvr-underline-from-center">
                         <a class="nav-link fw-bold" href="{{ route('user.about') }}">About Us</a>

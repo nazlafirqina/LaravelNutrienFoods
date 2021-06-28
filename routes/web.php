@@ -43,6 +43,9 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::get('about', function () {
         return view('user.about');
     })->name('user.about');
+    Route::get('contact', function () {
+        return view('user.contact');
+    })->name('user.contact');
     Route::get('profile', [HistoryMassaTubuhController::class, 'index'])->name('user.profile');
 
 
