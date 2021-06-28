@@ -47,8 +47,8 @@
             display: flex;
             flex-direction: column;
         }
-
     </style>
+    <link rel="stylesheet" href="{{ url('/css/menu.css') }}">
 @endsection
 
 @section('title', 'Cart')
@@ -59,7 +59,6 @@
         <h2>Halo, ini page cart</h2>
 
         <div class="list-item">
-
             @if (sizeof($carts) == 0)
                 <div class="alert-danger">
                     Keranjang Kosong
@@ -69,22 +68,30 @@
                 <div class="satuan-item">
                     <img src="{{ url('storage/' . $item->makanan->image) }}" alt="" style="width: 100px">
                     <strong>{{ $item->makanan->namaMakanan }}</strong>
-                    <span>Jumlah Barang di Keranjang :: {{ $item->jumlahBarang }}</span>
-                    <a href="#" class="btn btn-primary">Kurangi 1 Item</a>
-                    <a href="#" class="btn btn-primary">Tambah 1 Item</a>
+                    <span>Jumlah Barang di Keranjang : {{ $item->jumlahBarang }}</span>
+                    <form action="{{route('user.cart.decrease')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="id_makanan" value="{{ $item->makanan->id }}">
+                        <button type="submit" class="btn btn-primary">Kurangi 1 Item</button>
+                    </form>
+                    <form action="{{route('user.cart.add')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="id_makanan" value="{{ $item->makanan->id }}">
+                        <button type="submit" class="btn btn-primary">Tambah 1 Item</button>
+                    </form>
                     <a href="#" class="btn btn-primary">Hapus Item</a>
                 </div>
             @endforeach
+                <div class="detail-cart">
+                    @foreach ($carts as $item)
+                    <span>TOTAL BARANG : {{ $item->jumlahBarang }}</span>
+                    @endforeach
+                    <span>TOTAL HARGA :</span>
+                </div>
+            <form action="{{ route('user.transaction.do') }}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-primary">Chekcout</button>
+            </form>
         </div>
-
-        <div class="detail-cart">
-            <span>TOTAL BARANG : 5</span>
-            <span>TOTAL HARGA : 5</span>
-        </div>
-        <form action="{{ route('user.transaction.do') }}" method="post">
-            @csrf
-            <button type="submit" class="btn btn-primary">Chekcout</button>
-        </form>
-
     </div>
 @endsection

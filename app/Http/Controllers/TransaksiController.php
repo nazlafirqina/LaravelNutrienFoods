@@ -18,8 +18,21 @@ class TransaksiController extends Controller
         ]);
     }
 
-    public function addtocart(Request $request)
+    public function decreasecart(Request $request)
     {
+        $data = Cart::where('idUser', Auth::user()->id)->where('idMakanan', $request->id_makanan)->first();
+        if ($data) {
+                $data->jumlahBarang = $data->jumlahBarang - 1;
+                if ($data->jumlahBarang == 0){
+                    $data->delete();
+                    return redirect()->route('user.cart.list')->with('success', 'menghilangkan barang');
+                }
+                $data->save();
+                return redirect()->route('user.cart.list')->with('success', 'mengurangi jumlah barang');
+            }
+    }
+
+    public function addtocart(Request $request){
         $data = Cart::where('idUser', Auth::user()->id)->where('idMakanan', $request->id_makanan)->first();
         if ($data) {
             $data->jumlahBarang = $data->jumlahBarang + 1;

@@ -50,7 +50,9 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
 
 
     Route::get('cart',[TransaksiController::class, 'viewcart'])->name('user.cart.list');
-    Route::post('cart',[TransaksiController::class, 'addtocart'])->name('user.cart.add');
+    Route::get('cart/harga',[TransaksiController::class, 'totalcart'])->name('user.cart.price');
+    Route::post('cart/add',[TransaksiController::class, 'addtocart'])->name('user.cart.add');
+    Route::post('cart/decrease',[TransaksiController::class, 'decreasecart'])->name('user.cart.decrease');
     // TODO
     // ROUTE TAMBAH, KURANG, HAPUS item
 
