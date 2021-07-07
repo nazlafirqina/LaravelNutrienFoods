@@ -10,6 +10,7 @@
     <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">User ID: {{ $list->idUser }}</h5>
+        <h5 class="card-title">Transaction ID: {{ $list->id }}</h5>
         <form action="{{route('admin.status.bayar')}}" method="post">
             @csrf
             <input type="hidden" name="id_user" value="{{ $list->idUser }}">
