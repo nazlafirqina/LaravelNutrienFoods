@@ -58,17 +58,35 @@
             @foreach ($trans as $item)
                 <div class="satuan-trans">
                     <span>
-                        tanggal trans :: {{ $item->created_at }}
+                        tanggal trans : {{ $item->created_at }}
                     </span>
                     <span>
-                        total barang :: {{ $item->totalBarang }}
+                        total barang : {{ $item->totalBarang }}
                     </span>
                     <span>
-                        total uang :: <span class="money">{{ $item->totalHarga }}</span>
+                        total uang : <span class="money">{{ $item->totalHarga }}</span>
                     </span>
-                    <a href="#" class="btn btn-primary">Show Details</a>
+                    <form action="{{route('user.transaction.detail')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="id_trans" value="{{ $item->id }}">
+                        <button type="submit" class="btn btn-primary">Show Details</button>
+                    </form>
+                    <span>
+                    Status:
+                            @if ($item->bayar == 0)
+                                Belum dibayar
+                            @elseif ($item->bayar == 1)
+                                Sudah dibayar
+                            @endif
+                    </span>
+                    <span>
+                    Pengiriman:
+                            @if ($item->kirim == 0)
+                                Belum dikirim
+                            @elseif ($item->kirim == 1)
+                                Sudah dikirim
+                            @endif
                 </div>
-
             @endforeach
         </div>
     </div>

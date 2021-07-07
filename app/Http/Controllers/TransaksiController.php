@@ -86,8 +86,36 @@ class TransaksiController extends Controller
         ]);
     }
 
-    public function detailst($id)
+    public function detailst(Request $request)
     {
-        return view('user.detail_transaksi');
+        $data = DetailTransaksi::with('transaksi')->where('idTransaksi', $request->id_trans)->get();
+        return view('user.detail_transaksi', [
+            'detail' => $data,
+        ]);
+    }
+
+    public function setStatus(){
+        $data = Transaksi::all();
+        return view('admin.status.status', [
+            'status' => $data,
+        ]);
+    }
+
+    public function updatestatusbayar(Request $request){
+        $data = Transaksi::where('idUser', $request->id_user)->first();
+        if ($data) {
+            $data->bayar = 1;
+            $data->save();
+        }
+        return redirect()->route('admin.status.view'); 
+    }
+
+    public function updatestatuskirim(Request $request){
+        $data = Transaksi::where('idUser', $request->id_user)->first();
+        if ($data) {
+            $data->kirim = 1;
+            $data->save();
+        }
+        return redirect()->route('admin.status.view'); 
     }
 }

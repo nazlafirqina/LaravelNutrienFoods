@@ -4,7 +4,6 @@
 @endsection
 @section('title', 'Menu')
 @section('content')
-
     <div class="container my-5">
         <div class="row">
             @foreach ($listMakanan as $makanan)

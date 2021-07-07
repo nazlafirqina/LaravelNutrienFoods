@@ -35,18 +35,20 @@
             <div class="card shadow-lg mt-4 bg-card-body">
                 <div class="card-body">
                     <h4 class="card-title text-center">Body Mass Measure</h4>
-                    <form action="{{ route('user.formweight.store') }}" method="POST">
+                    <form action="{{ route('user.formweight.update') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="weight">Weight</label>
-                            <input type="text" class="form-control bg-body-form" name="weight" id="weight"
-                                placeholder="weight">
-                        </div>
-                        <div class="form-group">
-                            <label for="height">Height</label>
-                            <input type="text" class="form-control bg-body-form" name="height" id="height"
-                                placeholder="height">
-                        </div>
+                        @foreach ($body as $massatubuh)
+                            <div class="form-group">
+                                <label for="weight">Weight</label>
+                                <input type="text" class="form-control bg-body-form" name="weight" id="weight"
+                                    placeholder="{{ $massatubuh->weight }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Height</label>
+                                <input type="text" class="form-control bg-body-form" name="height" id="height"
+                                    placeholder="{{ $massatubuh->height }}">
+                            </div>
+                        @endforeach
                         <button type="submit" class="btn btn-primary self-align-center text-white mt-2" id="body-btn">
                             <h5>SUBMIT</h5>
                         </button>
@@ -68,27 +70,27 @@
                 <img src="{{url('/img/PenghiasRegister.png')}}" class="img-penghias" alt="food-bowl">
             </div>
             <div class="col-lg-5 offset-lg-2 cstm-mt">
-                <form action="{{ route('user.formweight.store') }}" method="POST">
+                <form action="{{ route('user.formweight.update') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="weight" class="mb-0">
                             <h4>Weight</h4>
                         </label>
                         <input type="text" class="form-control bg-body-form-desktop" name="weight" id="weight"
-                            placeholder=" Your Current Weight">
+                            placeholder="Your Current Weight: {{ $massatubuh->weight }}">
                     </div>
                     <div class="form-group">
                         <label for="height" class="mb-0">
                             <h4>Height</h4>
                         </label>
                         <input type="text" class="form-control bg-body-form-desktop" name="height" id="height"
-                            placeholder="Your Current Height">
+                            placeholder="Your Current Height: {{ $massatubuh->height }}">
                     </div>
                     <button type="submit" class="btn btn-primary self-align-center text-white mt-2" id="body-btn">
                         <h4>SUBMIT</h4>
                     </button>
+                    <a class="rgstr-link text-blue" href="{{route('user.profile')}}">Go Back to Profile</a>
                 </form>
-                <a class="rgstr-link text-blue" href="{{route('user.profile')}}">Back</a>
             </div>
         </div>
     </div>

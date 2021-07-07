@@ -12,7 +12,7 @@
         <ul>
             <a href="{{ route('admin.tipeMakanan.index') }}">List Tipe Makanan</a>
             <a href="{{ route('admin.makanan.index') }}">Makanan</a>
-            {{-- <a href="{{ route('admin.jenisTubuh.index') }}">Jenis Tubuh</a> --}}
+            <a href="#"> Pengiriman & Pembayaran</a>
             <button>Logout</button>
         </ul>
 

@@ -17,7 +17,7 @@ class HistoryMassaTubuhController extends Controller
     public function index()
     {
         $data = HistoryMassaTubuh::with('user')->where('idUser', Auth::user()->id)->get();
-        return view('user.profile', [
+        return view('user.bodydetails', [
             'list' => $data,
         ]);
 
@@ -30,12 +30,18 @@ class HistoryMassaTubuhController extends Controller
      */
     public function create()
     {
-        return view('user.formweight');
-        
+        $b = HistoryMassaTubuh::where('idUser', Auth::user()->id)->first();
+
+        if ($b->idUser != 0 ){
+            return redirect()->route('user.profile')->with('alert','You Have Entered Your Body Data');
+        }else{
+            return view('user.formweight');
+        }
     }
 
     public function store(Request $request)
     {
+
         $val = $request->validate([
             'height' => 'required',
             'weight' => 'required',
@@ -53,7 +59,7 @@ class HistoryMassaTubuhController extends Controller
             'hasil' => $bmi
         ]);
 
-        return redirect()->route('user.menu');
+        return redirect()->route('user.profile');
     }
 
     public function show(HistoryMassaTubuh $historyMassaTubuh)
@@ -61,15 +67,35 @@ class HistoryMassaTubuhController extends Controller
         //
     }
 
-    public function edit(HistoryMassaTubuh $historyMassaTubuh)
+    public function edit()
     {
-        //
+        $body = HistoryMassaTubuh::with('user')->where('idUser', Auth::user()->id)->get();
+        return view('user.updateformweight', [
+            'body' => $body
+        ]);
     }
 
     
-    public function update(Request $request, HistoryMassaTubuh $historyMassaTubuh)
+    public function update(Request $request)
     {
-        //
+        $val = $request->validate([
+            'weight' => 'required',
+            'height' => 'required',
+        ]);
+        $tinggi = $request->height;
+        $berat =$request->weight;
+        $tgg = $tinggi/100;
+        $bmi = $berat/($tgg*$tgg);
+
+        $b = HistoryMassaTubuh::where('idUser', Auth::user()->id)->first();
+
+        $b->update([
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'hasil' => $bmi
+        ]);
+
+        return redirect()->route('user.profile');
     }
 
     /**

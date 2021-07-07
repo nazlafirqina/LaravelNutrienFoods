@@ -86,11 +86,10 @@
                     @foreach ($carts as $item)
                     <span>TOTAL BARANG : {{ $item->jumlahBarang }}</span>
                     @endforeach
-                    <span>TOTAL HARGA :</span>
                 </div>
             <form action="{{ route('user.transaction.do') }}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-primary">Chekcout</button>
+                <button type="submit" class="btn btn-primary">Checkout</button>
             </form>
         </div>
     </div>

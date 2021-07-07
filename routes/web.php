@@ -46,7 +46,10 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::get('contact', function () {
         return view('user.contact');
     })->name('user.contact');
-    Route::get('profile', [HistoryMassaTubuhController::class, 'index'])->name('user.profile');
+    Route::get('profile', [DashboardController::class, 'profile'])->name('user.profile');
+
+    Route::get('body', [HistoryMassaTubuhController::class, 'index'])->name('user.bodydetails');
+
 
 
     Route::get('cart',[TransaksiController::class, 'viewcart'])->name('user.cart.list');
@@ -58,10 +61,12 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
 
     Route::post('checkout', [TransaksiController::class, 'docheckout'])->name('user.transaction.do');
     Route::get('trns', [TransaksiController::class, 'listt'])->name('user.transaction.list');
-    Route::get('trns/{id}', [TransaksiController::class, 'detailst'])->name('user.transaction.detail');
+    Route::post('trns/det', [TransaksiController::class, 'detailst'])->name('user.transaction.detail');
 
     Route::get('formweight', [HistoryMassaTubuhController::class, 'create'])->name('user.formweight.create');
+    Route::get('formweightedit', [HistoryMassaTubuhController::class, 'edit'])->name('user.formweight.edit');
     Route::post('formweight', [HistoryMassaTubuhController::class, 'store'])->name('user.formweight.store');
+    Route::post('formweightupdate', [HistoryMassaTubuhController::class, 'update'])->name('user.formweight.update');
 });
 
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
@@ -92,4 +97,8 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {
         Route::post('/update/{id}', [JenisTubuhController::class, 'update'])->name('admin.jenisTubuh.update');
         Route::post('/delete/{id}', [JenisTubuhController::class, 'destroy'])->name('admin.jenisTubuh.delete');
     });
+
+    Route::get('status', [TransaksiController::class, 'setStatus'])->name('admin.status.view');
+    Route::post('statusbayar', [TransaksiController::class, 'updatestatusbayar'])->name('admin.status.bayar');
+    Route::post('statuskirim', [TransaksiController::class, 'updatestatuskirim'])->name('admin.status.kirim');
 });
