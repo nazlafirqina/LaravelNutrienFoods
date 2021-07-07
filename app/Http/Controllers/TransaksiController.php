@@ -118,4 +118,15 @@ class TransaksiController extends Controller
         }
         return redirect()->route('admin.status.view'); 
     }
+
+    public function bayar()
+    {
+        $b = Transaksi::where('idUser', Auth::user()->id)->first();
+
+        if ($b->bayar != 0 ){
+            return redirect()->route('user.profile')->with('belum','Your Payment Have Been Confirmed');
+        }else{
+            return redirect()->route('user.profile')->with('sudah','Wait for Confirmation');
+        }
+    }
 }

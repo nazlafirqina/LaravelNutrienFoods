@@ -64,7 +64,7 @@
                     </span>
                 </div>
             @endforeach
-            <a href="#" class="btn btn-primary">Bayar</a>
+            <a href="{{route('user.detail_transaksi.bayar')}}" class="btn btn-primary">Bayar</a>
         </div>
 </div>
 @endsection

@@ -67,6 +67,7 @@ Route::prefix('user')->middleware([UserMiddleware::class, 'auth'])->group(functi
     Route::get('formweightedit', [HistoryMassaTubuhController::class, 'edit'])->name('user.formweight.edit');
     Route::post('formweight', [HistoryMassaTubuhController::class, 'store'])->name('user.formweight.store');
     Route::post('formweightupdate', [HistoryMassaTubuhController::class, 'update'])->name('user.formweight.update');
+    Route::get('bayar', [TransaksiController::class, 'bayar'])->name('user.detail_transaksi.bayar');
 });
 
 Route::prefix('admin')->middleware(AdminMiddleware::class)->group(function () {

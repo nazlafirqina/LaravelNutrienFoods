@@ -66,9 +66,19 @@
     </script>
     <script>
         var msg = '{{Session::get('alert')}}';
+        var msg2 = '{{Session::get('belum')}}';
+        var msg3 = '{{Session::get('sudah')}}';
         var exist = '{{Session::has('alert')}}';
+        var exist2 = '{{Session::has('belum')}}';
+        var exist3 = '{{Session::has('sudah')}}';
         if(exist){
-        alert(msg);
+            alert(msg);
+        }
+        if(exist2){
+            alert(msg2);
+        }
+        if(exist3){
+            alert(msg3);
         }
     </script>
 </body>
